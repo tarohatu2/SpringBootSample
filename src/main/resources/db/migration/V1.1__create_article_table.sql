@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS Article (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  title VARCHAR(50) DEFAULT NULL,
+  created_datetime DATETIME NOT NULL,
+  updated_datetime DATETIME NOT NULL,
+  PRIMARY KEY(id)
+);

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- コンソールにログを出力する設定 -->
+    <appender name="ACCESS_LOG" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date %level [%thread] %X{method} %X{request_url} %X{status_code} %X{uuid} %logger{36} -%kvp- %msg %X{latency}%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="SERVICE_LOG" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date %level [%thread] %X{uuid} %logger{36} -%kvp- %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.example.sampleapp.demo.logging.AccessLoggingFilter" level="INFO">
+        <appender-ref ref="ACCESS_LOG" />
+    </logger>
+    <!-- INFOレベル以上のログを出力-->
+    <root level="WARN">
+        <appender-ref ref="SERVICE_LOG" />
+    </root>
+</configuration>

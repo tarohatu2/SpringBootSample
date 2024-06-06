@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS Profile (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  nickname VARCHAR(50) DEFAULT NULL,
+  created_datetime DATETIME NOT NULL,
+  updated_datetime DATETIME NOT NULL,
+  user_id INT NOT NULL UNIQUE,
+  PRIMARY KEY(id)
+);
+
+ALTER TABLE Profile
+ADD CONSTRAINT profile_user_id_fk
+FOREIGN KEY (user_id)
+REFERENCES User(id);

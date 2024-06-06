@@ -1,0 +1,6 @@
+ALTER TABLE Article ADD COLUMN user_id INT NOT NULL FIRST;
+
+ALTER TABLE Article
+ADD CONSTRAINT article_user_id_fk
+FOREIGN KEY (user_id)
+REFERENCES User(id);
