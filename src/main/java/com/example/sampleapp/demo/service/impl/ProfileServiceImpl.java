@@ -3,6 +3,7 @@ package com.example.sampleapp.demo.service.impl;
 import com.example.sampleapp.demo.entity.mapper.ProfileMapper;
 import com.example.sampleapp.demo.entity.request.CreateProfileRequest;
 import com.example.sampleapp.demo.entity.response.CreateProfileResponse;
+import com.example.sampleapp.demo.entity.response.FindProfileResponse;
 import com.example.sampleapp.demo.error.APIResponseError;
 import com.example.sampleapp.demo.error.APIErrors;
 import com.example.sampleapp.demo.repository.ProfileRepository;
@@ -43,5 +44,19 @@ public class ProfileServiceImpl implements ProfileService {
         } catch (DataIntegrityViolationException ex) {
             throw new APIResponseError(APIErrors.CONFLICT, ex, "すでにプロフィールが登録されています");
         }
+    }
+
+    /**
+     * @param profileId プロフィールのId
+     * @return レスポンスボディ
+     */
+    @Override
+    public FindProfileResponse findById(int profileId) {
+        var profile = repository.findById(profileId);
+        if (profile.isEmpty()) {
+            throw  new APIResponseError(APIErrors.NOT_FOUND, new IllegalArgumentException(), "指定されたプロフィールが見つかりませんでした。");
+        }
+
+        return mapper.mapFindResponse(profile.get());
     }
 }
