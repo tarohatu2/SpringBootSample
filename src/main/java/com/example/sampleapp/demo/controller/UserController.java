@@ -46,7 +46,7 @@ public class UserController {
             )
         }
     )
-    public FindUserResponse findUserById(@PathVariable int id) {
+    public FindUserWithArticleResponse findUserById(@PathVariable int id) {
         return service.findById(id);
     }
 

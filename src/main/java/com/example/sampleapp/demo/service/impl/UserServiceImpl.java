@@ -39,12 +39,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public FindUserResponse findById(int id) {
+    public FindUserWithArticleResponse findById(int id) {
         Optional<User> user = repository.findById(id);
         if (user.isEmpty()) {
             throw new APIResponseError(APIErrors.NOT_FOUND, new IllegalArgumentException(), "指定したユーザーが存在しません");
         }
-        return mapper.mapFindUserResponse(user.get());
+        return mapper.mapFindUserWithArticleResponse(user.get());
     }
 
     @Transactional

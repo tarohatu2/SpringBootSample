@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface UserService {
     CreateUserResponse saveUser(CreateUserRequest user);
-    FindUserResponse findById(int id);
+    FindUserWithArticleResponse findById(int id);
     List<FindUserResponse> findAll();
     void queryUserByName(String name, Pageable pageable);
     List<FindUserWithArticleResponse> findByIdWithArticle(int id);
