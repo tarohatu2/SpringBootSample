@@ -14,10 +14,11 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = APIResponseError.class)
     @ResponseBody
-    public ResponseEntity<HttpError> handleAPIException(HttpServletRequest request, APIResponseError error) {
+    public ResponseEntity<ErrorResponseBody> handleAPIException(HttpServletRequest request, APIResponseError error) {
         logger.warn(error.getMessage());
         logger.warn(error.getStackTrace(","));
-        return new ResponseEntity<>(error.getError(), error.getError().getStatus());
+        // return new ResponseEntity<>(error.getError(), error.getError().getStatus());
+        return new ResponseEntity<>(new ErrorResponseBody(error.getMessage()), error.getError().getStatus());
     }
 
     @ExceptionHandler(value = RuntimeException.class)

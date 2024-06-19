@@ -50,11 +50,17 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public List<FindUserResponse> findAll() {
+        // streamを解放しない場合
+        return repository.findByNameEndsWithOrderByIdDesc("Room2")
+                .map(mapper::mapFindUserResponse)
+                .collect(Collectors.toList());
+        /*
         try (Stream<User> stream = repository.findByNameEndsWithOrderByIdDesc("Room2")) {
             return stream
                     .map(mapper::mapFindUserResponse)
                     .collect(Collectors.toList());
         }
+         */
     }
 
     @Override

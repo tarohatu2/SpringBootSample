@@ -9,8 +9,12 @@ import com.example.sampleapp.demo.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +27,9 @@ public class UserController {
 
     @GetMapping("")
     @Operation(summary = "ユーザー一覧取得", description = "ユーザーの一覧を取得します")
-    public List<FindUserResponse> listUser() {
+    public List<FindUserResponse> listUser(@AuthenticationPrincipal Jwt jwt) {
+        // String email = oAuth2User.getAttribute("email");
+        System.out.println(jwt.getClaims().get("email"));
         return service.findAll();
     }
 

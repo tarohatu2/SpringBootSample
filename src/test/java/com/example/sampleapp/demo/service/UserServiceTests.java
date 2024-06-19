@@ -2,6 +2,7 @@ package com.example.sampleapp.demo.service;
 
 import com.example.sampleapp.demo.entity.database.User;
 import com.example.sampleapp.demo.entity.response.FindUserResponse;
+import com.example.sampleapp.demo.entity.response.FindUserWithArticleResponse;
 import com.example.sampleapp.demo.error.APIResponseError;
 import com.example.sampleapp.demo.repository.UserRepository;
 import com.example.sampleapp.demo.service.impl.UserServiceImpl;
@@ -72,7 +73,7 @@ public class UserServiceTests {
             when(repository.findById(id)).thenReturn(Optional.of(user));
 
             // act
-            FindUserResponse response = service.findById(id);
+            FindUserWithArticleResponse response = service.findById(id);
 
             // assert
             assertEquals("testUser", response.name());
@@ -86,7 +87,7 @@ public class UserServiceTests {
 
             // act
             try {
-                FindUserResponse response = service.findById(id);
+                FindUserWithArticleResponse response = service.findById(id);
                 fail();
             } catch (APIResponseError error) {
                 // assert

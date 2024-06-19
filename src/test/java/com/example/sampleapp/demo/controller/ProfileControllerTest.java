@@ -14,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -36,6 +37,7 @@ class ProfileControllerTest {
 
     @Nested
     @DisplayName("POST /profiles/{userId}")
+    @WithMockUser
     class PostProfileTest {
         @Autowired
         MockMvc mockMvc;
@@ -115,6 +117,7 @@ class ProfileControllerTest {
 
     @Nested
     @DisplayName("GET /profiles/{profileId}")
+    @WithMockUser
     class GetProfileTest {
         @Autowired
         MockMvc mockMvc;
